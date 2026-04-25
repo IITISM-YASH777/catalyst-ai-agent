@@ -15,19 +15,30 @@ Agent Framework: LangGraph and LangChain
 Search Infrastructure: Tavily AI
 Frontend Framework: Streamlit
 
-Installation and Setup
+Local Setup Instructions
+To run Career Architect AI locally, follow these steps:
 
-Clone the repository
-Use git clone followed by your repository URL to download the source code to your local machine.
+1. Prerequisites
 
-Install dependencies
-Run the command pip install -r requirements.txt to install all necessary Python libraries.
+Ensure you have Python 3.10+ installed.
+Obtain a Groq API Key and a Tavily API Key.
 
-Configure API Keys
-Open app.py and locate the key variables. Replace the placeholders with your valid Groq and Tavily API keys.
+2. Clone and Install
 
-Execute the Application
-Run the command python -m streamlit run app.py in your terminal to launch the interface in your browser.
+git clone https://github.com/IITISM-YASH777/catalyst-ai-agent.git
+cd catalyst-ai-agent
+python -m pip install -r requirements.txt
+
+3. Configure Environment
+Open app.py and enter your API keys in the designated variables:
+
+GROQ_KEY = "your_key_here"
+TAVILY_KEY = "your_key_here"
+
+4. Launch the Application
+Run  
+python -m streamlit run app.py
+in your terminal to launch the interface in your browser.
 
 Technical Architecture
 The system operates on a Reasoning and Acting (ReAct) pattern. Upon receiving input, the agent performs a gap analysis, determines necessary search queries, and validates the quality of external resources before generating the final roadmap. This ensures that all learning paths are grounded in real-world data rather than model hallucinations.
