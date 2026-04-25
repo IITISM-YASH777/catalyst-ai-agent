@@ -5,10 +5,9 @@ from langchain_community.tools.tavily_search import TavilySearchResults
 from langgraph.prebuilt import create_react_agent
 from langchain_core.messages import HumanMessage
 
-# --- PAGE CONFIG (must be first) ---
+
 st.set_page_config(page_title="Career Architect AI", page_icon="▲", layout="wide")
 
-# --- PROFESSIONAL DARK UI STYLING ---
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Syne:wght@400;500;600;700&display=swap');
@@ -22,11 +21,11 @@ st.markdown("""
         color: #e8e6e0;
     }
 
-    /* Hide default streamlit header */
+   
     header[data-testid="stHeader"] { background: transparent; }
     .block-container { padding-top: 2rem; padding-bottom: 4rem; max-width: 900px; }
 
-    /* ---- HERO SECTION ---- */
+    
     .ca-eyebrow {
         display: inline-flex;
         align-items: center;
@@ -59,15 +58,17 @@ st.markdown("""
     }
 
     .ca-subtitle {
-        font-size: 15px;
-        color: #555a6b;
-        text-align: center;
-        max-width: 460px;
-        margin: 0 auto 48px;
-        line-height: 1.7;
+    font-size: 15px;
+    color: #555a6b;
+    text-align: center !important;
+    max-width: 460px;
+    margin: 0 auto 48px !important;
+    line-height: 1.7;
+    display: block;
+    width: 100%;
+
     }
 
-    /* ---- PANEL / CARD ---- */
     div[data-testid="stVerticalBlock"] > div:has(div.stFileUploader),
     div[data-testid="stVerticalBlock"] > div:has(div.stTextArea) {
         background: #13151d;
@@ -254,16 +255,15 @@ st.markdown("""
     .stMarkdown p, .stMarkdown li { color: #7a8099 !important; font-size: 14px !important; line-height: 1.8 !important; }
     .stMarkdown table { border-radius: 10px; overflow: hidden; border: 1px solid #1e2029; }
     .stMarkdown th { background: #1a1c26 !important; color: #c8b89a !important; font-size: 11px !important; letter-spacing: 0.08em !important; text-transform: uppercase !important; padding: 12px 16px !important; }
-    .stMarkdown td { background: #13151d !important; color: #7a8099 !important; font-size: 13px !important; padding: 10px 16px !important; border-top: 1px solid #1e2029 !important; }
+    .stMarkdown td { background: #13151d !important; color: #c8c4bc !important; font-size: 15px !important; padding: 12px 16px !important; border-top: 1px solid #1e2029 !important; }
     </style>
     """, unsafe_allow_html=True)
 
-# --- HERO SECTION ---
-st.markdown('<div style="text-align:center; margin-bottom: 8px;"><span class="ca-eyebrow">&#x25CF;&nbsp; Agentic AI &middot; Autonomous Analysis</span></div>', unsafe_allow_html=True)
-st.markdown('<h1 class="ca-title">Bridge the gap between your resume<br>and your <em>dream role.</em></h1>', unsafe_allow_html=True)
-st.markdown('<p class="ca-subtitle">Upload your resume. Paste a job description. Get a precision-built 4-week learning plan grounded in real skill gaps.</p>', unsafe_allow_html=True)
 
-# --- HELPERS ---
+st.markdown('<div style="text-align:center; margin-bottom: 8px;"><span class="ca-eyebrow" style="font-size:14px; letter-spacing:0.08em;">&#x25CF;&nbsp; Career Architect AI</span></div>', unsafe_allow_html=True)
+st.markdown('<h1 class="ca-title">Bridge the gap between your resume<br>and your <em>dream role.</em></h1>', unsafe_allow_html=True)
+st.markdown('<div style="text-align:center; width:100%;"><p class="ca-subtitle" style="text-align:center; margin:0 auto;">Upload your resume. Paste a job description. Get a precision-built 4-week learning plan grounded in real skill gaps.</p></div>', unsafe_allow_html=True)
+
 def extract_text_from_pdf(file):
     pdf_reader = PdfReader(file)
     text = ""
@@ -271,11 +271,12 @@ def extract_text_from_pdf(file):
         text += page.extract_text() or ""
     return text
 
-# --- SETTINGS ---
+
 GROQ_KEY = "Groq_API_key"
 TAVILY_KEY = "Tavily_API_key"
 
-# --- UI INPUTS ---
+
+
 col1, col2 = st.columns(2)
 
 with col1:
@@ -288,7 +289,7 @@ with col1:
 with col2:
     jd_text = st.text_area("💼 Job Description", height=220, placeholder="Paste the full job description here — responsibilities, required skills, and qualifications...")
 
-# --- FEATURE CHIPS ---
+
 st.markdown("""
 <div class="ca-features">
   <div class="ca-feature-chip">
@@ -306,7 +307,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# --- EXECUTION ---
+
 if st.button("Generate My Learning Path ↗"):
     if resume_text and jd_text:
         with st.status("Agent is searching and reasoning...", expanded=True) as status:
