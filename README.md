@@ -30,12 +30,13 @@ cd catalyst-ai-agent
 python -m pip install -r requirements.txt
 
 3. Configure Environment
+   
 Open app.py and enter your API keys in the designated variables:
-
 GROQ_KEY = "your_key_here"
 TAVILY_KEY = "your_key_here"
 
 4. Launch the Application
+
 Run  
 python -m streamlit run app.py
 in your terminal to launch the interface in your browser.
