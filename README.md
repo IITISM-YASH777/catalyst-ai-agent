@@ -6,9 +6,9 @@ Career Architect AI is an autonomous agentic system designed for the Catalyst Ha
 
 Core Features
 
-PDF Ingestion: Extracts text from resume files using the pypdf library.
-ReAct Agent Logic: Implemented via LangGraph to provide autonomous reasoning and tool use.
-Live Scouting: Integrated with the Tavily Search API to find current and free learning materials.
+PDF Ingestion: Extracts text from resume files using the pypdf library.  
+ReAct Agent Logic: Implemented via LangGraph to provide autonomous reasoning and tool use.  
+Live Scouting: Integrated with the Tavily Search API to find current and free learning materials.  
 Professional Interface: A modern dark mode user interface built with the Streamlit framework.
 
 Technical Stack
