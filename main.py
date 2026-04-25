@@ -5,8 +5,8 @@ from langgraph.prebuilt import create_react_agent
 from langchain_core.messages import HumanMessage
 
 
-GROQ_KEY = "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"
-TAVILY_KEY = "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"
+GROQ_KEY = "Groq_API_key"
+TAVILY_KEY = "Tavily_API_key"
 
 
 llm = ChatGroq(
