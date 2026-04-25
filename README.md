@@ -18,7 +18,7 @@ Agent Framework: LangGraph and LangChain,
 Search Infrastructure: Tavily AI,
 Frontend Framework: Streamlit
 
-Local Setup Instructions.
+Local Setup Instructions.  
 To run Career Architect AI locally, follow these steps:
 
 1. Prerequisites
