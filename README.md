@@ -13,9 +13,9 @@ Professional Interface: A modern dark mode user interface built with the Streaml
 
 Technical Stack
 
-Large Language Model: Llama 3.3 70B via Groq Cloud,
-Agent Framework: LangGraph and LangChain,
-Search Infrastructure: Tavily AI,
+Large Language Model: Llama 3.3 70B via Groq Cloud  
+Agent Framework: LangGraph and LangChain  
+Search Infrastructure: Tavily AI  
 Frontend Framework: Streamlit
 
 Local Setup Instructions.  
