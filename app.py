@@ -272,8 +272,8 @@ def extract_text_from_pdf(file):
     return text
 
 # --- SETTINGS ---
-GROQ_KEY = "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"
-TAVILY_KEY = "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"
+GROQ_KEY = "Groq_API_key"
+TAVILY_KEY = "Tavily_API_key"
 
 # --- UI INPUTS ---
 col1, col2 = st.columns(2)
