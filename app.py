@@ -282,8 +282,8 @@ load_dotenv()
 # THE FAIL-SAFE: 
 # It tries to find the key in Secrets. If that fails, it looks in Environment Variables.
 try:
-    GROQ_KEY = st.secrets["GROQ_KEY"]
-    TAVILY_KEY = st.secrets["TAVILY_KEY"]
+    GROQ_KEY = st.secrets("GROQ_KEY")
+    TAVILY_KEY = st.secrets("TAVILY_KEY")
 except:
     GROQ_KEY = os.environ.get("GROQ_KEY")
     TAVILY_KEY = os.environ.get("TAVILY_KEY")
