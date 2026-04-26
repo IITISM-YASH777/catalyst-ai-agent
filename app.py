@@ -272,21 +272,8 @@ def extract_text_from_pdf(file):
     return text
 
 
-import os
-import streamlit as st
-from dotenv import load_dotenv
-
-# Load local .env just in case
-load_dotenv()
-
-# THE FAIL-SAFE: 
-# It tries to find the key in Secrets. If that fails, it looks in Environment Variables.
-try:
-    GROQ_KEY = st.secrets("GROQ_KEY")
-    TAVILY_KEY = st.secrets("TAVILY_KEY")
-except:
-    GROQ_KEY = os.environ.get("GROQ_KEY")
-    TAVILY_KEY = os.environ.get("TAVILY_KEY")
+GROQ_KEY = st.secrets["GROQ_KEY"]
+TAVILY_KEY = st.secrets["TAVILY_KEY"]
 
 
 col1, col2 = st.columns(2)
