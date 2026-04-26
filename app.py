@@ -271,9 +271,8 @@ def extract_text_from_pdf(file):
         text += page.extract_text() or ""
     return text
 
-GROQ_KEY = st.secrets["GROQ_KEY"]
-TAVILY_KEY = st.secrets["TAVILY_KEY"]
-
+GROQ_KEY = "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"
+TAVILY_KEY = "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"
 
 
 col1, col2 = st.columns(2)
