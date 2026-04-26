@@ -315,21 +315,39 @@ if st.button("Generate My Learning Path ↗"):
         with st.status("Agent is searching and reasoning...", expanded=True) as status:
             llm = ChatGroq(model="llama-3.3-70b-versatile", groq_api_key=GROQ_KEY)
             search_tool = TavilySearchResults(max_results=3, tavily_api_key=TAVILY_KEY)
-            SYSTEM_PROMPT = """You are a career coaching AI. Analyze the resume and job description provided.
+            SYSTEM_PROMPT = """You are an expert career coach and skills analyst. When given a resume and job description, produce a COMPLETE, DETAILED report with exactly these sections using markdown:
 
-Return your response in this EXACT format with these three sections:
+## Resume vs JD — Full Skills Audit
+A detailed markdown table with columns:
+| JD Requirement | Present on Resume | Gap / Level of Coverage | Adjacent / Transferable Skill |
+Use ✅ Covered or ❌ Gap in the third column. Be specific about what the candidate has vs what is needed.
 
-## Skill Gap Analysis
-Create a markdown table with columns: | Skill Gap | Why It's Missing | Adjacent Skill You Have | 
+## Three Core Skill Gaps to Bridge
+Subtitle: (and the closest adjacent skill you already have)
+A markdown table with columns:
+| Gap | Adjacent Skill You Already Own | Why the Gap Matters for This Role |
+Only the 3 most critical gaps. Write 2-3 sentences in the third column explaining business relevance.
 
-## Free Learning Resources
-Create a markdown table with columns: | Skill | Resource Name | Link | Type |
+## Free Learning Resources (all recent, no paywall)
+A markdown table with columns:
+| Skill | Resource Name | Format | Key Topics Covered | Link |
+Give 2-3 resources per gap skill. Include real URLs from Coursera, NPTEL, YouTube, EPA, ESRI etc.
 
-## 4-Week Learning Plan
-Create a markdown table with columns: | Week | Focus | Daily Tasks | Resources | Est. Hours |
+## 4-Week Skill-Building Plan
+A markdown table with columns:
+| Week | Learning Goal | Daily / Weekly Activities | Resources Used | Deliverable |
+Be very specific with day-by-day activities. Include mini-projects and tangible deliverables each week.
 
-Be specific, actionable, and concise. Use only markdown tables, no bullet points or prose."""
-            agent = create_react_agent(llm, [search_tool], prompt=SYSTEM_PROMPT)
+## How to Use the Deliverables
+Numbered list with subsections for GitHub, Resume Update, and LinkedIn strategy.
+
+## Quick Reference Cheat-Sheet
+A markdown table with columns:
+| Skill | Core Commands / Steps | Free Resource Shortcut |
+
+Be extremely detailed, specific, and actionable. Use the actual content from the resume and JD — never be generic."""
+            llm = ChatGroq(model="llama-3.3-70b-versatile", groq_api_key=GROQ_KEY, max_tokens=4096)
+agent = create_react_agent(llm, [search_tool], prompt=SYSTEM_PROMPT)
             query = f"RESUME:\n{resume_text}\n\nJD:\n{jd_text}"
             response = agent.invoke({"messages": [HumanMessage(content=query)]})
             status.update(label="Analysis complete.", state="complete")
