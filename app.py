@@ -271,15 +271,9 @@ def extract_text_from_pdf(file):
         text += page.extract_text() or ""
     return text
 
-import os
-from dotenv import load_dotenv
 
-# 1. Load local .env file if it exists
-load_dotenv()
-
-# 2. Key Logic: Check Streamlit Secrets first, then Environment Variables
-GROQ_KEY = os.getenv("GROQ_KEY")
-TAVILY_KEY = os.getenv("TAVILY_KEY")
+GROQ_KEY = st.secrets("GROQ_KEY")
+TAVILY_KEY = st.secrets("TAVILY_KEY")
 
 
 col1, col2 = st.columns(2)
