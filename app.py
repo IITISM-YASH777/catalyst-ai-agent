@@ -313,7 +313,7 @@ st.markdown("""
 if st.button("Generate My Learning Path ↗"):
     if resume_text and jd_text:
         with st.status("Agent is searching and reasoning...", expanded=True) as status:
-            llm = ChatGroq(model="openai/gpt-oss-120b", groq_api_key=GROQ_KEY)
+            llm = ChatGroq(model="llama3-70b-8192", groq_api_key=GROQ_KEY)
             search_tool = TavilySearchResults(max_results=3, tavily_api_key=TAVILY_KEY)
             SYSTEM_PROMPT = "Compare resume and JD. Find 3 skill gaps and adjacent skills. Find free resources. Output a 4-week table."
             agent = create_react_agent(llm, [search_tool], prompt=SYSTEM_PROMPT)
