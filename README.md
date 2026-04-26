@@ -18,6 +18,9 @@ Agent Framework: LangGraph and LangChain
 Search Infrastructure: Tavily AI  
 Frontend Framework: Streamlit
 
+Working Prototype:  
+Project URL- https://catalyst-ai-agent-yashsaxena3779.streamlit.app/
+
 Local Setup Instructions.  
 To run Career Architect AI locally, follow these steps:
 
