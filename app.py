@@ -315,7 +315,20 @@ if st.button("Generate My Learning Path ↗"):
         with st.status("Agent is searching and reasoning...", expanded=True) as status:
             llm = ChatGroq(model="llama-3.3-70b-versatile", groq_api_key=GROQ_KEY)
             search_tool = TavilySearchResults(max_results=3, tavily_api_key=TAVILY_KEY)
-            SYSTEM_PROMPT = "Compare resume and JD. Find 3 skill gaps and adjacent skills. Find free resources. Output a 4-week table."
+            SYSTEM_PROMPT = """You are a career coaching AI. Analyze the resume and job description provided.
+
+Return your response in this EXACT format with these three sections:
+
+## Skill Gap Analysis
+Create a markdown table with columns: | Skill Gap | Why It's Missing | Adjacent Skill You Have | 
+
+## Free Learning Resources
+Create a markdown table with columns: | Skill | Resource Name | Link | Type |
+
+## 4-Week Learning Plan
+Create a markdown table with columns: | Week | Focus | Daily Tasks | Resources | Est. Hours |
+
+Be specific, actionable, and concise. Use only markdown tables, no bullet points or prose."""
             agent = create_react_agent(llm, [search_tool], prompt=SYSTEM_PROMPT)
             query = f"RESUME:\n{resume_text}\n\nJD:\n{jd_text}"
             response = agent.invoke({"messages": [HumanMessage(content=query)]})
