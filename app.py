@@ -347,7 +347,7 @@ A markdown table with columns:
 
 Be extremely detailed, specific, and actionable. Use the actual content from the resume and JD — never be generic."""
             llm = ChatGroq(model="llama-3.3-70b-versatile", groq_api_key=GROQ_KEY, max_tokens=4096)
-agent = create_react_agent(llm, [search_tool], prompt=SYSTEM_PROMPT)
+            agent = create_react_agent(llm, [search_tool], prompt=SYSTEM_PROMPT)
             query = f"RESUME:\n{resume_text}\n\nJD:\n{jd_text}"
             response = agent.invoke({"messages": [HumanMessage(content=query)]})
             status.update(label="Analysis complete.", state="complete")
