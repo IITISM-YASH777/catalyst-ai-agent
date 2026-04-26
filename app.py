@@ -346,7 +346,7 @@ A markdown table with columns:
 | Skill | Core Commands / Steps | Free Resource Shortcut |
 
 Be extremely detailed, specific, and actionable. Use the actual content from the resume and JD — never be generic."""
-            llm = ChatGroq(model="llama-3.3-70b-versatile", groq_api_key=GROQ_KEY, max_tokens=4096)
+            llm = ChatGroq(model="deepseek-r1-distill-llama-70b", groq_api_key=GROQ_KEY, max_tokens=4096)
             agent = create_react_agent(llm, [search_tool], prompt=SYSTEM_PROMPT)
             query = f"RESUME:\n{resume_text}\n\nJD:\n{jd_text}"
             response = agent.invoke({"messages": [HumanMessage(content=query)]})
