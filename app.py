@@ -272,8 +272,12 @@ def extract_text_from_pdf(file):
     return text
 
 
-GROQ_KEY = st.get("GROQ_KEY")
-TAVILY_KEY = st.get("TAVILY_KEY")
+# --- SETTINGS ---
+import streamlit as st
+
+# Direct dictionary access is the most reliable way for Streamlit
+GROQ_KEY = st.secrets["GROQ_KEY"]
+TAVILY_KEY = st.secrets["TAVILY_KEY"]
 
 
 col1, col2 = st.columns(2)
