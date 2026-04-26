@@ -275,6 +275,9 @@ def extract_text_from_pdf(file):
 GROQ_KEY = st.secrets["GROQ_KEY"]
 TAVILY_KEY = st.secrets["TAVILY_KEY"]
 
+# TEMP DEBUG - remove after fix
+st.write("GROQ loaded:", GROQ_KEY[:8] if GROQ_KEY else "EMPTY")
+
 
 col1, col2 = st.columns(2)
 
