@@ -271,8 +271,15 @@ def extract_text_from_pdf(file):
         text += page.extract_text() or ""
     return text
 
-GROQ_KEY = "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"
-TAVILY_KEY = "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"
+import os
+from dotenv import load_dotenv
+
+# 1. Load local .env file if it exists
+load_dotenv()
+
+# 2. Key Logic: Check Streamlit Secrets first, then Environment Variables
+GROQ_KEY = os.getenv("GROQ_KEY")
+TAVILY_KEY = os.getenv("TAVILY_KEY")
 
 
 col1, col2 = st.columns(2)
