@@ -271,9 +271,8 @@ def extract_text_from_pdf(file):
         text += page.extract_text() or ""
     return text
 
-
-GROQ_KEY = "Groq_API_key"
-TAVILY_KEY = "Tavily_API_key"
+GROQ_KEY = st.secrets["GROQ_KEY"]
+TAVILY_KEY = st.secrets["TAVILY_KEY"]
 
 
 
