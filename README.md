@@ -1,52 +1,65 @@
-Career Architect AI Technical Documentation
+# Career Architect AI
 
-Project Description
+**Live app:** https://catalyst-ai-agent-yashsaxena3779.streamlit.app/
 
-Career Architect AI is an autonomous agentic system designed for the Catalyst Hackathon. The application analyzes the gap between a user's current resume and a specific job description. It utilizes a reasoning loop to identify missing skills and performs real-time web searches to provide a structured four week learning roadmap with live resources.
+An autonomous agent that reads a resume and a target job description, identifies the skill gap
+between them, and builds a four-week learning roadmap grounded in resources it retrieves live from
+the web rather than recalled from model weights.
 
-Core Features
+Built for the Catalyst Hackathon.
 
-PDF Ingestion: Extracts text from resume files using the pypdf library.  
-ReAct Agent Logic: Implemented via LangGraph to provide autonomous reasoning and tool use.  
-Live Scouting: Integrated with the Tavily Search API to find current and free learning materials.  
-Professional Interface: A modern dark mode user interface built with the Streamlit framework.
+## How it works
 
-Technical Stack
+The system runs on a ReAct (Reasoning and Acting) loop rather than a single prompt. Given a resume
+and a job description, the agent:
 
-Large Language Model: Llama 3.3 70B via Groq Cloud  
-Agent Framework: LangGraph and LangChain  
-Search Infrastructure: Tavily AI  
-Frontend Framework: Streamlit
+1. Performs a gap analysis to identify which required skills are missing or underevidenced.
+2. Decides for itself what to search for, generating its own queries from that gap analysis.
+3. Calls the Tavily search API to retrieve current, freely available learning material.
+4. Evaluates the returned resources for relevance and quality before including them.
+5. Assembles a week-by-week roadmap where every recommended resource is one it actually retrieved.
 
-Working Prototype:  
-Project URL- https://catalyst-ai-agent-yashsaxena3779.streamlit.app/
+The design decision that matters here is step 3. A model asked to recommend learning resources from
+memory will produce plausible-looking course names and dead links, because it is generating rather
+than retrieving. Grounding every recommendation in a live search result means the roadmap points at
+things that exist right now.
 
-Local Setup Instructions.  
-To run Career Architect AI locally, follow these steps:
+## Stack
 
-1. Prerequisites
+| Layer | Technology |
+|---|---|
+| Language model | Llama 3.3 70B via Groq Cloud |
+| Agent framework | LangGraph, LangChain |
+| Search | Tavily API |
+| Document parsing | pypdf |
+| Interface | Streamlit |
+| Deployment | Streamlit Community Cloud |
 
-Ensure you have Python 3.10+ installed.
-Obtain a Groq API Key and a Tavily API Key.
+## Running it locally
 
-2. Clone and Install
+```bash
+git clone <repository-url>
+cd <repository-directory>
+pip install -r requirements.txt
+```
 
-git clone https://github.com/IITISM-YASH777/catalyst-ai-agent.git
-cd catalyst-ai-agent  
-python -m pip install -r requirements.txt
+Create a `.env` file in the project root with your API keys:
 
-3. Configure Environment
-   
-Open app.py and enter your API keys in the designated variables:
-GROQ_KEY = "your_key_here"
-TAVILY_KEY = "your_key_here"
+```
+GROQ_API_KEY=your_groq_key_here
+TAVILY_API_KEY=your_tavily_key_here
+```
 
-4. Launch the Application
+Both are free to obtain — Groq at console.groq.com, Tavily at tavily.com. The `.env` file is
+gitignored and keys are never committed.
 
-Run  
-python -m streamlit run app.py  
-in your terminal to launch the interface in your browser.
+Then:
 
-Technical Architecture
+```bash
+python -m streamlit run app.py
+```
 
-The system operates on a Reasoning and Acting (ReAct) pattern. Upon receiving input, the agent performs a gap analysis, determines necessary search queries, and validates the quality of external resources before generating the final roadmap. This ensures that all learning paths are grounded in real-world data rather than model hallucinations.
+## Notes
+
+Resume text is parsed in memory and not persisted anywhere. The hosted app is a demo; it runs on
+free-tier API quotas, so heavy concurrent use may hit rate limits.
